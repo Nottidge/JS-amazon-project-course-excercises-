@@ -1,4 +1,4 @@
-import {cart, addToCart} from '../data/cart.js';
+import {cart, addToCart, AddedToCartMsg} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 let productsHTML = '';
@@ -69,13 +69,6 @@ document.querySelector('.js-products-grid')
 
         document.querySelector('.js-cart-quantity')
          .innerHTML = cartQuantity;
-  }
-
-  function AddedToCartMsg (textElement) {
-    textElement.classList.add('addedMsg')
-          setTimeout(() => {
-            textElement.classList.remove('addedMsg')
-          }, 2000)
   }
 
   document.querySelectorAll('.js-add-to-cart')
