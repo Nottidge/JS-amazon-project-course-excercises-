@@ -68,9 +68,16 @@ document.querySelector('.js-products-grid')
           cartQuantity += cartItem.quantity;
         });
 
-        document.querySelector('.js-cart-quantity')
+    if (cartQuantity === 0) {
+      document.querySelector('.js-cart-quantity')
+         .innerHTML = '';
+    } else {
+      document.querySelector('.js-cart-quantity')
          .innerHTML = cartQuantity;
+    }
+    console.log(cartQuantity);     
   }
+  updateCartQuantity();
 
   document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {

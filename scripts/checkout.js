@@ -120,7 +120,12 @@ document.querySelectorAll('.js-delete-link')
           cartQuantity += cartItem.quantity;
         });
 
-        document.querySelector('.js-return-to-home-link')
+        if (cartQuantity !== 0) {
+          document.querySelector('.js-return-to-home-link')
          .innerHTML = `${cartQuantity} items`;
+        } else {
+          document.querySelector('.js-return-to-home-link')
+         .innerHTML = '';
+        }
   }
 
