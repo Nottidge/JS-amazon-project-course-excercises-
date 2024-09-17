@@ -12,8 +12,6 @@ import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js'
 import {renderPaymentSummary} from './paymentSummary.js';
 
 export function renderOrderSummary () {
-updateCartQuantity();
-
 let cartSummaryHTML = '';
 
 cart.forEach((cartItem) => {
@@ -30,7 +28,9 @@ cart.forEach((cartItem) => {
     const dateString = deliveryDate.format('dddd, MMMM D');
 
   cartSummaryHTML += `
-<div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
+<div class="cart-item-container 
+    js-cart-item-container
+    js-cart-item-container-${matchingProduct.id}">
     <div class="delivery-date">
       Delivery date: ${dateString}
     </div>
@@ -46,7 +46,8 @@ cart.forEach((cartItem) => {
         <div class="product-price">
           $${formatCurrency(matchingProduct.priceCents)}
         </div>
-        <div class="product-quantity">
+        <div class="product-quantity
+         js-product-quantity-${matchingProduct.id}">
           <span>
             Quantity: <span class="quantity-label js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span>
           </span>
@@ -58,7 +59,8 @@ cart.forEach((cartItem) => {
             <span class="save-quantity-link link-primary js-save-link"
             data-product-id="${matchingProduct.id}">Save</span>
 
-          <span class="delete-quantity-link link-primary js-delete-link" 
+          <span class="delete-quantity-link link-primary js-delete-link 
+          js-delete-link-${matchingProduct.id}" 
           data-product-id="${matchingProduct.id}">
             Delete
           </span>
@@ -122,24 +124,24 @@ document.querySelectorAll('.js-delete-link')
       removeFromCart(productId);
 
      renderOrderSummary();
-
      updateCartQuantity();
-
      renderPaymentSummary();
     });
   });
 
   function updateCartQuantity () {
     const cartQuantity = calculateCartQuantity();
-
-        if (cartQuantity !== 0) {
-          document.querySelector('.js-return-to-home-link')
-         .innerHTML = `${cartQuantity} items`;
-        } else {
-          document.querySelector('.js-return-to-home-link')
-         .innerHTML = '';
-        }
+  
+    if (cartQuantity !== 0) {
+      document.querySelector('.js-return-to-home-link')
+        .innerHTML = `${cartQuantity} items`;
+    } else {
+      document.querySelector('.js-return-to-home-link')
+        .innerHTML = '';
+    }
   }
+
+  updateCartQuantity();
 
  document.querySelectorAll('.js-update-link')
   .forEach((link) => {

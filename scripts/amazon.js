@@ -71,8 +71,8 @@ document.querySelector('.js-products-grid')
       document.querySelector('.js-cart-quantity')
          .innerHTML = cartQuantity;
     }
-    console.log(cartQuantity);     
   }
+  
   updateCartQuantity();
 
   document.querySelectorAll('.js-add-to-cart')
